@@ -5,57 +5,61 @@ import {
   Typography,
   Toolbar,
   Button,
+  IconButton,
 } from "@mui/material";
 import Products from "../components/Products/Products";
+import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Home = () => {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Box sx={{ bgcolor: "#FFFFFF", height: "30vh", marginBottom: "10px"}}>
-          <Typography  sx={{ padding: "20px ", marginTop: "50px", textAlign:"center"}} variant="h3">Seller</Typography>
-          <Box
-            sx={{ height: "54px", marginTop:"7vh" }}
+        <Box sx={{ bgcolor: "#FFFFFF", height: "30vh", marginBottom: "10px" }}>
+          <Typography
+            sx={{ padding: "20px ", marginTop: "50px", textAlign: "center" }}
+            variant="h3"
           >
-            <Toolbar sx={{alignItems:"center", justifyContent: "center"}}>
-            <Button
-              sx={{ marginRight: "20px" }}
-              color="inherit"
-              variant="text"
-            >
-              T-shirts
-            </Button>
-            <Button
-              sx={{ marginRight: "20px" }}
-              color="inherit"
-              variant="text"
-   
-            >
-              Hoodies
-            </Button>
-            <Button
-              sx={{ marginRight: "20px" }}
-              color="inherit"
-              variant="text"
-     
-            >
-              Poster
-            </Button>
-            <Button
-              sx={{ marginRight: "20px" }}
-              color="inherit"
-              variant="text"
-     
-            >
-              Albums
-            </Button>
+            Seller
+          </Typography>
+          <Box sx={{ height: "54px", marginTop: "7vh" }}>
+            <Toolbar sx={{ alignItems: "center", justifyContent: "center" }}>
+              <Button
+                sx={{ marginRight: "20px" }}
+                color="inherit"
+                variant="text"
+              >
+                T-shirts
+              </Button>
+              <Button
+                sx={{ marginRight: "20px" }}
+                color="inherit"
+                variant="text"
+              >
+                Hoodies
+              </Button>
+              <Button
+                sx={{ marginRight: "20px" }}
+                color="inherit"
+                variant="text"
+              >
+                Poster
+              </Button>
+              <Button
+                sx={{ marginRight: "20px" }}
+                color="inherit"
+                variant="text"
+              >
+                Albums
+              </Button>
+              <IconButton component={Link} to="/cart">
+                <ShoppingCartIcon sx={{color: "black"}} />
+              </IconButton>
             </Toolbar>
           </Box>
         </Box>
-        <Box
-          sx={{ bgcolor: "#FFFFFF", height: "100vh", marginTop: "20px" }}
-        >
-        <Products/>
+        <Box sx={{ bgcolor: "#FFFFFF", height: "content" || "100vh", marginTop: "50px" }}>
+          <Products />
         </Box>
       </Container>
     </React.Fragment>

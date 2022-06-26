@@ -6,6 +6,7 @@ import MyAccount from "./screens/MyAccount.jsx";
 import React from "react";
 import Layout from "./layout/Layout";
 import './App.css'
+import Cart from "./screens/Cart";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/myaccount" element={<MyAccount />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Layout>
     </div>

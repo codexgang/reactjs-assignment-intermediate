@@ -8,7 +8,7 @@ return (
         <Toolbar>
           <Button sx={{ marginRight: "20px"}} color="inherit" variant="text" component={Link} to={'/'}>Home</Button>
             <Button sx={{ marginRight: "20px"}}  color="inherit" variant="text" component={Link} to={'/contact'}>Contact</Button>
-            <Button sx={{ marginRight: "20px"}}  color="inherit" variant="text" component={Link} to={'/myaccount'} >My MyAccount</Button>
+            <Button sx={{ marginRight: "20px"}}  color="inherit" variant="text" component={Link} to={'/myaccount'} >MyAccount</Button>
         </Toolbar>
     </AppBar>
   )
