@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Box,
@@ -6,12 +6,51 @@ import {
   Toolbar,
   Button,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import Products from "../components/Products/Products";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [filter,setFilter] = useState(products)
+  const [loading, setLoading] = useState(false);
+  let componentMounted = true
+
+ 
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await fetch("https://fakestoreapi.com/products");
+        
+        if(componentMounted) {
+        const data = await response.json();
+        setProducts(data);
+        setFilter(data)
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+    
+    return ()=>{
+      componentMounted = false
+    }
+    }
+    fetchData();
+ 
+  
+  }, []);
+   
+  const filterProduct = (cat) => {
+    const updatedList = products.filter((x) => x.category === cat);
+    setFilter(updatedList);
+  };
+
   return (
     <React.Fragment>
       <Container maxWidth="lg">
@@ -28,38 +67,68 @@ const Home = () => {
                 sx={{ marginRight: "20px" }}
                 color="inherit"
                 variant="text"
+                onClick={() => setFilter(products)}
               >
-                T-shirts
+                All
               </Button>
               <Button
                 sx={{ marginRight: "20px" }}
                 color="inherit"
                 variant="text"
+                onClick={() => filterProduct("women's clothing")}
               >
-                Hoodies
+                Women
               </Button>
               <Button
                 sx={{ marginRight: "20px" }}
                 color="inherit"
                 variant="text"
+                onClick={() => filterProduct("men's clothing")}
               >
-                Poster
+                men
               </Button>
               <Button
                 sx={{ marginRight: "20px" }}
                 color="inherit"
                 variant="text"
+                onClick={() => filterProduct("electronics")}
               >
-                Albums
+                electronics
+              </Button>
+              <Button
+                sx={{ marginRight: "20px" }}
+                color="inherit"
+                variant="text"
+                onClick={() => filterProduct("jewelery")}
+              >
+                Jewellery
               </Button>
               <IconButton component={Link} to="/cart">
-                <ShoppingCartIcon sx={{color: "black"}} />
+                <ShoppingCartIcon sx={{ color: "black" }} />
               </IconButton>
             </Toolbar>
           </Box>
         </Box>
-        <Box sx={{ bgcolor: "#FFFFFF", height: "content" || "100vh", marginTop: "50px" }}>
-          <Products />
+        <Box
+          sx={{
+            bgcolor: "#FFFFFF",
+            height: "content" || "100vh",
+            marginTop: "50px",
+          }}
+        >
+          {loading ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Products products={filter} />
+          )}
         </Box>
       </Container>
     </React.Fragment>

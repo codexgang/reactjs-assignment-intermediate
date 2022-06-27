@@ -1,18 +1,17 @@
 import { Grid, Container, Box, Typography, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { DUMMYDATA } from "../Products";
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  const productDis = DUMMYDATA.find((item) => item.id === productId);
+//   const productDis = DUMMYDATA.find((item) => item.id === productId);
 
   return (
     <Container maxWidth="ls">
-      <Box
+      {/* <Box
         sx={{
           bgcolor: "#FFFFFF",
-          height: "100vh",
-          paddingTop: "30px"
+          height: "80vh",
+          paddingTop: "70px"
         }}
       >
         <Grid container spacing={2} sx={{ padding: "5px" }}>
@@ -48,7 +47,7 @@ const ProductDetails = () => {
           </div>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
     </Container>
   );
 };
