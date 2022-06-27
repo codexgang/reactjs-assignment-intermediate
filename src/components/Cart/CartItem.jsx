@@ -10,15 +10,16 @@ import {
 import React from "react";
 
 const CartMain = () => {
+
   return (
-    <Card sx={{ flex: 1, height: "265px", padding: "5px", marginBottom:"5px" }}>
+    <Card sx={{ flex: 1, height: "165px", padding: "5px", marginBottom:"5px" }}>
       <Grid container >
         <Grid item xs={4}  sx={{padding: "5px",}}>
         <CardMedia
           component="img"
           image="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
           alt="Paella dish"
-          sx={{ cursor: "pointer", height: "260px", objectFit: "contain" }}
+          sx={{ cursor: "pointer", height: "160px", objectFit: "contain" }}
         />
         </Grid>
         <Grid item xs={8}  sx={{ display:"flex", flexDirection:"column",justifyContent: "space-evenly", alignItems: "center"}} >
@@ -32,7 +33,7 @@ const CartMain = () => {
        
         </CardContent>
         <CardActions sx={{ justifyContent: "center" }}>
-          <Button variant="contained" sx={{ backgroundColor: "#010101" }}>
+          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}} >
            -
           </Button>
           <Typography
@@ -43,7 +44,7 @@ const CartMain = () => {
           >
             1
           </Typography>
-          <Button variant="contained" sx={{ backgroundColor: "#010101" }}>
+          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}}>
             +
           </Button>
         </CardActions>
