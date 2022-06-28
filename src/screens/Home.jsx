@@ -12,42 +12,33 @@ import Products from "../components/Products/Products";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [filter,setFilter] = useState(products)
+  const [filter, setFilter] = useState(products);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true
 
- 
+
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         const response = await fetch("https://fakestoreapi.com/products");
-        
-        if(componentMounted) {
+
         const data = await response.json();
         setProducts(data);
-        setFilter(data)
+        setFilter(data);
+
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
       }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-    
-    return ()=>{
-      componentMounted = false
-    }
     }
     fetchData();
- 
-  
   }, []);
-   
-  const filterProduct = (cat) => {
-    const updatedList = products.filter((x) => x.category === cat);
+
+  const filterProduct = (key) => {
+    const updatedList = products.filter((item) => item.category === key);
     setFilter(updatedList);
   };
 

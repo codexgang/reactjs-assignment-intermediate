@@ -32,15 +32,15 @@ const Product = ({ imgUrl, title, price, id }) => {
     
     >
       
-      <Card sx={{ flex: 1, height: "360px", padding: "5px" }}>
+      <Card sx={{ flex: 1, height: "320px", padding: "5px" }}>
         <CardMedia
           component="img"
           image={imgUrl}
           alt="Paella dish"
-          sx={{ cursor: "pointer", height: "200px", objectFit: "contain" }}
+          sx={{ cursor: "pointer", height: "160px", objectFit: "contain" }}
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary" textAlign="center" >
+          <Typography variant="body2" color="text.secondary" textAlign="center">
             {newTitle}
           </Typography>
           <Typography
