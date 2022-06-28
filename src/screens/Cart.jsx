@@ -3,11 +3,13 @@ import { Box } from "@mui/system";
 import React from "react";
 import CartItem from "../components/Cart/CartItem";
 import CartTotal from "../components/Cart/CartTotal";
+import { useSelector } from "react-redux"
 
 
 const Cart = () => {
 
   const data = [0, 1, 2, 3];
+  const cartItemData = useSelector(state => state.cart.cart)
 
 
   return (
@@ -20,8 +22,8 @@ const Cart = () => {
       >
         <Grid container spacing={1} sx={{ padding: "5px" }}>
           <Grid item xs={8}>
-            {data.map((item) => (
-              <CartItem key={item} />
+            {cartItemData.map((item) => (
+              <CartItem key={item.id} id={item.id} title={item.title} price={item.price} image={item.image}  />
             ))}
           </Grid>
           <Grid item xs={4}>

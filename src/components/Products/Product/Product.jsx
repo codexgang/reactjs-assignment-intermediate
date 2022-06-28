@@ -10,9 +10,23 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { addProductToCart } from "../../../store/cart";
 
 const Product = ({ imgUrl, title, price, id }) => {
   const [depth, setDepth] = useState(1);
+  const pro = {
+    id,
+    title,
+    image: imgUrl,
+    price,
+  };
+
+  const dispatch = useDispatch();
+
+  const proData = useSelector((state) => state.cart.cart);
+  console.log(proData);
 
   const newTitle = title.split(" ").slice(0, 4).join(" ");
 
@@ -24,44 +38,49 @@ const Product = ({ imgUrl, title, price, id }) => {
   };
 
   return (
-    <Link to={`/${id}`} style={{ textDecoration: 'none' }} >
-    <Paper
-      elevation={depth}
-      onMouseEnter={depthInc}
-      onMouseLeave={depthDec}
-    
-    >
-      
-      <Card sx={{ flex: 1, height: "320px", padding: "5px" }}>
-        <CardMedia
-          component="img"
-          image={imgUrl}
-          alt="Paella dish"
-          sx={{ cursor: "pointer", height: "160px", objectFit: "contain" }}
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary" textAlign="center">
-            {newTitle}
-          </Typography>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            textAlign="center"
-            margin="5px 0 5px 0"
-         
-          >
-            ${price}
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Button variant="contained" sx={{ backgroundColor: "#010101"}}>
-            Add To Cart
-          </Button>
-        </CardActions>
-      </Card>
+    <Paper elevation={depth} onMouseEnter={depthInc} onMouseLeave={depthDec}>
+        <Card sx={{ flex: 1, height: "320px", padding: "5px" }}>
+        <Link to={`/${id}`} style={{ textDecoration: "none" }}>
+          <CardMedia
+            component="img"
+            image={imgUrl}
+            alt="Paella dish"
+            sx={{ cursor: "pointer", height: "160px", objectFit: "contain" }}
+          />
 
-    </Paper>
-    </Link>
+          <CardContent>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="center"
+            >
+              {newTitle}
+            </Typography>
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              textAlign="center"
+              margin="5px 0 5px 0"
+              color="black"
+            >
+              ${price}
+            </Typography>
+          </CardContent>
+          </Link>
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#010101" }}
+              onClick={() =>
+                dispatch(addProductToCart(pro))
+              }
+            >
+              Add To Cart
+            </Button>
+          </CardActions>
+        </Card>
+      </Paper>
+    
   );
 };
 

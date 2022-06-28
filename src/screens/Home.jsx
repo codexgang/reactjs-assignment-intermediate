@@ -5,12 +5,12 @@ import {
   Typography,
   Toolbar,
   Button,
-  IconButton,
+
   CircularProgress,
 } from "@mui/material";
 import Products from "../components/Products/Products";
-import { Link } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -94,9 +94,7 @@ const Home = () => {
               >
                 Jewellery
               </Button>
-              <IconButton component={Link} to="/cart">
-                <ShoppingCartIcon sx={{ color: "black" }} />
-              </IconButton>
+            
             </Toolbar>
           </Box>
         </Box>
