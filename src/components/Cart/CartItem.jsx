@@ -8,9 +8,12 @@ import {
   Grid,
 } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { decreaseQuantity, increaseQuantity } from "../../store/cart"
 
 
-const CartMain = ({id,image,title,price}) => {
+const CartMain = ({id,image,title,price, quantity,totalAmount}) => {
+  const dispatch = useDispatch();
   
 
   return (
@@ -30,12 +33,17 @@ const CartMain = ({id,image,title,price}) => {
           {title}
           </Typography>
           <Typography variant="body2" sx={{fontWeight:"bold", textAlign:"center", margin: "10px"}}>
-          ${price}
+           ${totalAmount.toFixed(2)}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{textAlign:"center", margin: "10px"}}>
+         {`($${price}/item)`}
           </Typography>
        
         </CardContent>
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}} >
+        <CardActions sx={{ justifyContent: "center" , marginTop:"-15px"}}>
+          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}}
+           onClick={()=> dispatch(decreaseQuantity({id,price}))}
+          >
            -
           </Button>
           <Typography
@@ -44,9 +52,11 @@ const CartMain = ({id,image,title,price}) => {
             textAlign="center"
             margin="5px"
           >
-            1
+            {quantity}
           </Typography>
-          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}}>
+          <Button variant="text" sx={{fontSize:26 , fontWeight:"bold"}}
+           onClick={()=> dispatch(increaseQuantity({id,price}))}
+          >
             +
           </Button>
         </CardActions>

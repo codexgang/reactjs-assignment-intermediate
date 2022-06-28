@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { addProductToCart } from "../../../store/cart";
 
@@ -24,9 +24,6 @@ const Product = ({ imgUrl, title, price, id }) => {
   };
 
   const dispatch = useDispatch();
-
-  const proData = useSelector((state) => state.cart.cart);
-  console.log(proData);
 
   const newTitle = title.split(" ").slice(0, 4).join(" ");
 

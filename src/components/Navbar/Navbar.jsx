@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 
 
 const Navbar = () => {
-  const cartValue = useSelector(state => state.cart.cart.length)
+  const cartValue = useSelector(state => state.cart.totalQuantity)
   return (
     <AppBar sx={{ alignItems: "center", backgroundColor: "#010101" }}>
       <Toolbar>

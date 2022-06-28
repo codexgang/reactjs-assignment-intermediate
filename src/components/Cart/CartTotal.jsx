@@ -1,7 +1,9 @@
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import React from 'react'
+import { useSelector} from "react-redux"
 
 const CartTotal = () => {
+  const totalAmount = useSelector(state => state.cart.totalPrice)
   return (
     <Card sx={{ flex: 1, height: "265px", padding: "5px", marginBottom:"5px" }}>
       <CardContent>
@@ -10,7 +12,7 @@ const CartTotal = () => {
         </Typography>
 
         <Typography variant="body2" sx={{fontWeight:"bold", textAlign:"center", margin: "20px"}}>
-        $66.66
+        ${totalAmount.toFixed(2)}
         </Typography>
      
       </CardContent>
